@@ -1,0 +1,46 @@
+RewriteEngine On
+# use for authentication
+RewriteCond %{HTTP:Authorization} ^(.+)$
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+
+Header set Access-Control-Allow-Origin *
+
+#################################### ALL FOR DEVELOPER #################################
+RewriteRule ^upload/photo$ core/upload-photo.php [L]
+
+
+### SETTING POST sir mon ###
+RewriteRule ^post$ controllers/post/post.php [L]
+RewriteRule ^post/([0-9]+)$ controllers/post/post.php?postid=$1 [L]
+RewriteRule ^post/active/([0-9]+)$ controllers/post/active.php?postid=$1 [L]
+RewriteRule ^post/search$ controllers/post/search.php [L]
+
+### SETTING SERVICES ###
+RewriteRule ^services$ controllers/services/services.php [L]
+RewriteRule ^services/([0-9]+)$ controllers/services/services.php?servicesid=$1 [L]
+RewriteRule ^services/active/([0-9]+)$ controllers/services/active.php?servicesid=$1 [L]
+RewriteRule ^services/search$ controllers/services/search.php [L]
+
+### SETTING PROJECT###
+RewriteRule ^project$ controllers/project/project.php [L]
+RewriteRule ^project/([0-9]+)$ controllers/project/project.php?projectid=$1 [L]
+RewriteRule ^project/active/([0-9]+)$ controllers/project/active.php?projectid=$1 [L]
+RewriteRule ^project/search$ controllers/project/search.php [L]
+
+### SETTING CONTACT###
+RewriteRule ^contact$ controllers/contact/contact.php [L]
+RewriteRule ^contact/([0-9]+)$ controllers/contact/contact.php?contactid=$1 [L]
+RewriteRule ^contact/active/([0-9]+)$ controllers/contact/active.php?contactid=$1 [L]
+RewriteRule ^contact/search$ controllers/contact/search.php [L]
+
+### SETTING USER###
+RewriteRule ^user$ controllers/user/user.php [L]
+RewriteRule ^user/([0-9]+)$ controllers/user/user.php?userid=$1 [L]
+RewriteRule ^user/active/([0-9]+)$ controllers/user/active.php?userid=$1 [L]
+RewriteRule ^user/search$ controllers/user/search.php [L]
+RewriteRule ^user/password$ controllers/user/set-password.php [L]
+RewriteRule ^user/reset$ controllers/user/reset-password.php [L]
+RewriteRule ^user/login$ controllers/user/login.php [L]
+RewriteRule ^user/token$ controllers/user/token.php [L]
