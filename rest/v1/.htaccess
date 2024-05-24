@@ -16,7 +16,6 @@ RewriteRule ^post$ controllers/post/post.php [L]
 RewriteRule ^post/([0-9]+)$ controllers/post/post.php?postid=$1 [L]
 RewriteRule ^post/active/([0-9]+)$ controllers/post/active.php?postid=$1 [L]
 RewriteRule ^post/search$ controllers/post/search.php [L]
-
 ### SETTING SERVICES ###
 RewriteRule ^services$ controllers/services/services.php [L]
 RewriteRule ^services/([0-9]+)$ controllers/services/services.php?servicesid=$1 [L]

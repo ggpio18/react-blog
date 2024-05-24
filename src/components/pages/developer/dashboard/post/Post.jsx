@@ -74,7 +74,7 @@ const Post = () => {
 
         </main>
 
-        {store.isAdd && <ModalAddPost  itemEdit={itemEdit}/>}
+        {store.isAdd && <ModalAddPost  itemEdit={itemEdit} position="center"/>}
         {store.success && <Toast/>}
         {store.error && <ModalError position="center"/>}
     </section>

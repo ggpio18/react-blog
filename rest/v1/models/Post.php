@@ -87,7 +87,7 @@ Class Post {
             $sql .= "from {$this->tblPost} ";
             $sql .= "where post_aid = :post_aid ";
             $sql .= "order by post_aid asc ";
-            $query = $this->connection->query($sql);
+            $query = $this->connection->prepare($sql);
             $query->execute([
                 "post_aid" => $this->post_aid,
             ]);
@@ -96,6 +96,7 @@ Class Post {
         }
         return $query;
     }
+    
     public function delete()
     {
         try {
