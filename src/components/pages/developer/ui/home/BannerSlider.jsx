@@ -5,7 +5,7 @@ const BannerSlider = () => {
     <>
       <div className="banner-slider">
         <div className='relative flex justify-center items-center h-[50vh]'>
-            <img src="https://via.placeholder.com/800x500" alt=""  className='object-cover h-[50vh] w-full absolute top-0 left-0 z-[-1]'/>
+            <img src="../../../public/img/banner.jpg" alt=""  className='object-cover h-[50vh] w-full absolute top-0 left-0 z-[-1]'/>
                  <div className='text-center'>
                      <ul className='flex justify-center gap-2'>
                          <li className='hover:bg-accent bg-stone-800 px-2 py-1 rounded-lg text-white font-bold text-xs'>Travel</li>

@@ -2,7 +2,7 @@ import React from 'react'
 // import ModalWrapper from '../../../../partials/modals/ModalWrapper'
 import { LiaTimesSolid } from 'react-icons/lia'
 import { Formik, Form } from 'formik'
-import { InputFileUpload, InputText, InputTextArea } from '../../../../helpers/FormInputs'
+import { InputFileUpload, InputSelect, InputText, InputTextArea } from '../../../../helpers/FormInputs'
 // import SpinnerButton from '../../../../partials/spinners/SpinnerButton'
 import { setError, setIsAdd, setMessage, setSuccess } from '../../../../../store/StoreAction'
 import { StoreContext } from '../../../../../store/StoreContext'
@@ -13,6 +13,7 @@ import useUploadPhoto from '../../../../custom-hook/useUploadPhoto'
 import { devBaseImgUrl } from '../../../../helpers/functions-general'
 import SpinnerButton from '../../ui/partials/spinners/SpinnerButton'
 import ModalWrapper from '../../ui/partials/modals/ModalWrapper'
+import useQueryData from '../../../../custom-hook/useQueryData'
 // import ModalWrapper from '../../ui/partials/modals/ModalWrapper'
 
 const ModalAddPost = ({itemEdit, position}) => {
@@ -23,6 +24,18 @@ const ModalAddPost = ({itemEdit, position}) => {
     const { uploadPhoto, handleChangePhoto, photo } = useUploadPhoto(
         `/v1/upload/photo`,
         dispatch
+      );
+
+      //modal add post
+      const {
+        isLoading,
+        isFetching,
+        error,
+        data: category,
+      } = useQueryData(
+        `/v1/category`, // endpoint
+        "get", // method
+        "category" // key
       );
 
     const queryClient = useQueryClient();
@@ -52,7 +65,7 @@ const ModalAddPost = ({itemEdit, position}) => {
         post_title: itemEdit ? itemEdit.post_title : "",
         post_image: itemEdit ? itemEdit.post_image : "",
         post_author: itemEdit ? itemEdit.post_author : "",
-        post_category: itemEdit ? itemEdit.post_category : "",
+        post_category_id: itemEdit ? itemEdit.post_category_id : "",
         post_article: itemEdit ? itemEdit.post_article : "",
         post_publish_date: itemEdit ? itemEdit.post_publish_date: "",
 
@@ -61,7 +74,7 @@ const ModalAddPost = ({itemEdit, position}) => {
     const yupSchema = Yup.object({
         post_title: Yup.string().required("Required g"),
         post_author: Yup.string().required("Required g"),
-        post_category: Yup.string().required("Required g"),
+        post_category_id: Yup.string().required("Required g"),
         post_article: Yup.string().required("Required g"),
         post_publish_date: Yup.string().required("Required g"),
     })
@@ -75,21 +88,23 @@ const ModalAddPost = ({itemEdit, position}) => {
                     <button className='absolute top-[25px] right-4' onClick={handleClose}><LiaTimesSolid/></button>
                 </div>
                 <div className="modal-body p-4 ">
-                    <Formik
+                            <Formik
                         initialValues={initVal}
                         validationSchema={yupSchema}
-                        // image
                         onSubmit={async (values) => {
-                            uploadPhoto()
-                            mutation.mutate({...values, 
-                                post_image:
+                            uploadPhoto();
+                            mutation.mutate({
+                            ...values,
+                            post_image:
                                 (itemEdit && itemEdit.post_image === "") || photo
-                                  ? photo === null
+                                ? photo === null
                                     ? itemEdit.post_image
                                     : photo.name
-                                  : values.post_image,})
-                          }}
-                    >
+                                : values.post_image,
+                            post_article: values.post_article.replace(/\\/g, ""),
+                            });
+                        }}
+                        >
                         {(props) => {
                             return (
                             <Form  className='flex flex-col '>
@@ -170,14 +185,19 @@ const ModalAddPost = ({itemEdit, position}) => {
                         </div>
 
                         <div className="input-wrap">
-                        <InputText
-                                label="Category"
-                                type="text"
-                                name="post_category"
-                            />
-                        </div>
-
-                        
+                                        <InputSelect
+                                            label="Category"
+                                            type="text"
+                                            name="post_category_id">
+                                                {category?.data.map((item, key)=> (
+                                                    <React.Fragment key={key}>
+                                                        <option hidden>Select</option>
+                                                        <option value={item.category_aid} >{item.category_title}</option>
+                                                    </React.Fragment >
+                                                )
+                                            )} 
+                                        </InputSelect>
+                                        </div>
 
                         <div className="input-wrap">
                         <InputText

@@ -9,6 +9,7 @@ import Post from "./components/pages/developer/dashboard/post/Post";
 import ForgotPassword from "./components/pages/developer/access/ForgotPassword";
 import CreatePassword from "./components/pages/developer/access/CreatePassword";
 import Login from "./components/pages/developer/access/Login";
+import Category from "./components/pages/developer/dashboard/category/Category";
 
 function App() {
   const queryClient = new QueryClient
@@ -26,7 +27,9 @@ function App() {
               <Route path="/create-password" element={<CreatePassword/>}/>
               
               {/* error here import post */}
-              <Route path="/post" element={<ProtectedRoute><Post/></ProtectedRoute>}/>
+              <Route path="/dashboard/post" element={<ProtectedRoute><Post/></ProtectedRoute>}/>
+              <Route path="/dashboard/category" element={<ProtectedRoute><Category/></ProtectedRoute>}/>
+
 
 
               {/* UI */}

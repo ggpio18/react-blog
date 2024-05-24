@@ -57,7 +57,7 @@ const PostTable = ({isLoading, isFetching, post, setItemEdit}) => {
                                 <th className='w-[80px]'>Image</th>
                                 <th className='w-[80px]'>Author</th>
                                 <th className='w-[80px]'>Category</th>
-                                <th className='w-[80px]'>Description</th>
+                                <th className='w-[80px]'>published date</th>
                                 <th className='w-[100px]'>Action</th>
                             </tr>
                         </thead>
@@ -84,8 +84,7 @@ const PostTable = ({isLoading, isFetching, post, setItemEdit}) => {
                         <td>{item.post_title}</td>
                         <td>{item.post_image}</td>
                         <td>{item.post_author}</td>
-                        <td>{item.post_category}</td>
-                        <td>{item.post_description}</td>
+                        <td>{item.category_title}</td>
                         <td>{item.post_publish_date}</td>
 
                         

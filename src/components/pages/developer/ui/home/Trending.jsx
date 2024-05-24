@@ -17,8 +17,14 @@ const Trending = () => {
    "/v1/post", // endpoint
    "get", // method
    "post", // key
-   
   );
+
+ 
+
+  const getTrending = () => post?.data.filter(item => item.post_category_id === 1)
+
+  // console.log(getTrending());
+
  
   return (
     <>
@@ -30,7 +36,7 @@ const Trending = () => {
             <Card/>
             <div className='grid gap-10 md:grid md:grid-cols-2'>
               {/* try */}
-              {!isLoading && post?.data.slice(0, 4).map(
+              {!isLoading && getTrending().slice(0, 4).map(
                     (item, key) => (
             <div className="shadow-[4px_2px_10px_5px_rgba(0,0,0,0.1)]  p-5 rounded-2xl" key={key}>
                     <div className='overflow-hidden rounded-xl h-[250px] mb-5 -mt-10'>
@@ -40,9 +46,7 @@ const Trending = () => {
                     </div>
                 <small className='hover:bg-accent bg-stone-600  px-2 py-1 rounded-lg text-white font-bold 
                     text-xs'>{item.post_category}</small>
-                    <h3 className='mt-4 mb-0'>Lorem ipsum dolor sit amet consectetur adipisicing.</h3>
-
-                    <Markdown>{item.post_article}</Markdown>
+                    <h3 className='mt-4 mb-0'>{item.post_title}</h3>
 
 
             </div>

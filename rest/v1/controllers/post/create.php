@@ -9,7 +9,7 @@ checkPayload($data);
 $post->post_title = checkIndex($data, "post_title");
 $post->post_image = checkIndex($data, "post_image");
 $post->post_author = checkIndex($data, "post_author");
-$post->post_category = checkIndex($data, "post_category");
+$post->post_category_id = checkIndex($data, "post_category_id");
 $post->post_article = checkIndex($data, "post_article");
 $post->post_publish_date = checkIndex($data, "post_publish_date");
 $post->post_is_active = 1;

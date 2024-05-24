@@ -44,10 +44,10 @@ const UIHeader = () => {
            
            <nav className={`${showNav ? "show" : ""} md:!max-h-[30px] md:absolute md:top-5 md:right-16`}>
             <ul className='space-y-5 p-4 md:flex md:gap-5 md:space-y-0 md:p-0'>
-              <li><Link  className="font-bold transition-color hover:text-accent active:text-accent" to="#">Home</Link></li>
+              <li><Link  className="font-bold transition-color hover:text-accent active:text-accent" to="/home">Home</Link></li>
               <li><Link  className="font-bold transition-color hover:text-accent" to="#">About</Link></li>
               <li><Link  className="font-bold transition-color hover:text-accent" to="#">Blog</Link></li>
-              <li><Link  className="font-bold transition-color hover:text-accent" to="#">Post</Link></li>
+              <li><Link  className="font-bold transition-color hover:text-accent" to="/single">Post</Link></li>
               <li><Link  className="font-bold transition-color hover:text-accent" to="#">Contact</Link></li>
             </ul>
            </nav>
